@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 It's just a test.
+=======
+thank you for your git article~
+>>>>>>> eb87118623dd2172b5f5622712031e176662f7cb
