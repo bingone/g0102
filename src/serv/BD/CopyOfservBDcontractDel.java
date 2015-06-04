@@ -78,7 +78,7 @@ public class CopyOfservBDcontractDel extends HttpServlet {
 		      //
 			voBDcontract dtcontract = new voBDcontract();
 			dtcontract.setContractNo(request.getParameter("EmployeeNo").trim());
-            boolean flag = new daoBDcontract().delBDcontract(dtcontract);
+            Boolean flag = new daoBDcontract().delBDcontract(dtcontract);
 				if (flag != null){
 					out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		    		out.println("<HTML>");
