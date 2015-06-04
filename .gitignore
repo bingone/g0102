@@ -2,7 +2,11 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+<<<<<<< HEAD
 asdasd
+=======
+
+>>>>>>> 37616cb3c36d4bfaff43a8eca00158ef8afad38c
 # Package Files #
 *.jar
 *.war
@@ -10,8 +14,11 @@ asdasd
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
 
 # Project file
 *.project
 *.pydevproject
 asdasd
+=======
+>>>>>>> 37616cb3c36d4bfaff43a8eca00158ef8afad38c
