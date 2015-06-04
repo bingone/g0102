@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>连锁超市的采购管理系统</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+ <style type="text/css">
+ *{ margin:0px;padding:0px;}
+  .menulist { background:#eee;width:800px;height:50px;margin:0 auto;}
+  ul {list-style:none;}
+  .menulist ul li{ float:left;line-height:25px;text-align:center; position:relative;}
+  ul li{ list-style:none;float:left;line-height:25px;}
+  ul li span{display:inline-block;text-align:center;width：25px;height:25px;}
+  ul li dl{padding-left:20px;display:none;}
+  ul li:hover dl{display:block;}
+  ul li:hover span{background:#F60;color:#FFF;}
+  .menulist a{ text-decoration:none;color:#000; display:block;width:110px;}
+  a:hover{ text-decoration:none;color:#FFF; background-color:#f60;}
+  ul li ul li{ float:none;border-left:0px;background-color:#eee;margin-top:0px;}
+  ul li ul{ position:absolute;width:110px;display:none;}
+  ul li ul li a{ width:110px;}
+  ul li ul li a:hover{ background-color:#06F }
+  ul li:hover ul{ display:block;}
+  .informInfo{ width:800px;height:250px;background:#eee;margin:0 auto;}
+  .left{width:20%;height:220px;float:left;background:#ccc}
+  .left ul li{ float:left;line-height:25px;text-align:center; position:relative;}
+  .left a{ text-decoration:none;color:#000;display:block;width:110px;}
+  .right{width:80%;height:220px;float:left;background:#ddd}
+  .one{width:30%;height:220px;float:left;background:#ddd}
+  .two{width:30%;height:220px;float:left;background:#ddd}
+  .three{width:30%;height:220px;float:left;background:#ddd}
+  #flow{
+  	height: 220px;
+	width: 640px;
+	overflow: hidden;     /*  这个一定要加，超出的内容部分要隐藏，免得撑高中间部分 */
+  }
+  #flow ul li {
+	height: 25px;
+ }
+ #flow ul li a {
+	width: 400px;
+	float: left;
+	overflow: hidden;
+	text-indent: 15px;
+	height: 25px;
+ }
+ #flow ul li span {
+	float: right;
+	color: #999;
+ }
+ #container { width: 600px; height: 200px; border: 3px solid #333; overflow: hidden; position: relative;}
+  #list { width: 5400px; height: 200px; position: absolute; z-index: 1;}
+  #list img { float: left;}
+  #buttons { position: absolute; height: 10px; width: 150px; z-index: 2; bottom: 20px; left: 250px;}
+  #buttons span { cursor: pointer; float: left; border: 1px solid #fff; width: 10px; height: 10px; border-radius: 50%; background: #333; margin-right: 5px;}
+  #buttons .on {  background: orangered;}
+  .arrow { cursor: pointer; display: none; line-height: 39px; text-align: center; font-size: 36px; font-weight: bold; width: 40px; height: 40px;  position: absolute; z-index: 2; top: 90px; background-color: RGBA(0,0,0,.3); color: #fff;}
+  .arrow:hover { background-color: RGBA(0,0,0,.7);}
+  #container:hover .arrow { display: block;}
+  #prev { left: 20px;}
+  #next { right: 20px;}
+  .top{ width:800px;height:90px;background:#eee;margin:0 auto;border:1px}
+  .top ul li{ float:left;line-height:25px;text-align:center; position:relative;}
+  .top a{ text-decoration:none;color:#000; display:block;width:110px;}
+  .returnInfo{ width:800px;height:250px;background:#eee;margin:0 auto;}
+  .bolckmanage{ width:800px;height:250px;background:#eee;margin:0 auto;}
+  .friendlink{ width:800px;height:250px;background:#eee;margin:0 auto;}
+  .foot{ width:800px;height:100px;background:#eee;margin:0 auto}
+  .foot ul li{ float:left;line-height:25px;text-align:center; position:relative;}
+  .foot a{ text-decoration:none;color:#000; display:block;width:110px;}
+  </style>
+   <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var container = $('#container');
+            var list = $('#list');
+            var buttons = $('#buttons span');
+            var prev = $('#prev');
+            var next = $('#next');
+            var index = 1;
+            var len = 7;
+            var interval = 2000;
+            var timer;
+
+
+            function animate (offset) {   //无限滚动
+                var left = parseInt(list.css('left')) + offset;
+                if (offset>0) {
+                    offset = '+=' + offset;
+                }
+                else {
+                    offset = '-=' + Math.abs(offset);
+                }
+                list.animate({'left': offset}, 600, function () {
+                    if(left > -200){
+                        list.css('left', -600 * len);
+                    }
+                    if(left < (-600 * len)) {
+                        list.css('left', -600);
+                    }
+                });
+            }
+
+            function showButton() {   //亮起小圆点
+                buttons.eq(index-1).addClass('on').siblings().removeClass('on');
+            }
+
+            function play() {
+                timer = setTimeout(function () {
+                    next.trigger('click');
+                    play();
+                }, interval);
+            }
+            function stop() {
+                clearTimeout(timer);
+            }
+
+            next.bind('click', function () {  //点击下一张图片的动作
+                if (list.is(':animated')) {
+                    return;
+                }
+                if (index == 7) {
+                    index = 1;
+                }
+                else {
+                    index += 1;
+                }
+                animate(-600);
+                showButton();
+            });
+
+            prev.bind('click', function () {    //点击上一张图片的动作
+                if (list.is(':animated')) {
+                    return;
+                }
+                if (index == 1) {
+                    index = 7;
+                }
+                else {
+                    index -= 1;
+                }
+                animate(600);
+                showButton();
+            });
+
+            buttons.each(function () {   //小圆点点击动作
+                 $(this).bind('click', function () {
+                     if (list.is(':animated') || $(this).attr('class')=='on') {
+                         return;
+                     }
+                     var myIndex = parseInt($(this).attr('index'));
+                     var offset = -600 * (myIndex - index);
+
+                     animate(offset);
+                     index = myIndex;
+                     showButton();
+                 })
+            });
+
+            container.hover(stop, play);
+
+            play();
+
+        });
+    </script>
+  </head>
+ <style type="text/css">
+  body{
+  background:url("image/u=266211593,3724500428&fm=21&gp=0.jpg");
+  background-repeat:no-repeat;
+background-size:1400px 1500px;
+
+  }
+  </style>
+ 
+  <body topmargin="0">
+  <div id="topcontent"class="top">
+  <table>
+  <tr>
+  <td align="center"><img src="image/20150524.JPG"></td>
+  <td>
+  <ul>
+  	<li><a href="login.jsp">登录</a></li>
+  	<li><a href="#">注册</a>
+  	<ul>
+  	<li><a href="register.jsp">职工注册</a></li>
+  	<li><a href="register1.jsp">供应商注册</a></li>
+  	<li><a href="register2.jsp">管理员注册</a></li>
+  	</ul>
+  	</li>
+  </ul>
+  </td>
+  </tr>
+  </table>
+  </div>
+  <div id="menu" class="menulist">
+  <ul>
+	  <li><a href="#">首页</a></li>
+	  <li><a href="#">信息发布</a>
+	  	<ul>
+	  		<li><a href="#">采购计划</a></li>
+	  		<li><a href="#">采购合同</a></li>
+	  		<li><a href="#">质量监控</a></li>
+	  		<li><a href="#">退换货</a></li>
+	  		<li><a href="#">配送货</a></li>
+	  	</ul>
+	  </li>
+	  <li><a href="#">信息反馈</a>
+	  	<ul>
+	  		<li><a href="#">退货反馈</a></li>
+	  		<li><a href="#">配送反馈</a></li>
+	  		<li><a href="#">绩效反馈</a></li>
+	  	</ul>
+	  </li>
+	  <li><a href="#">信息管理</a>
+	    <ul>
+	  		<li><a href="qry.html">信息查询</a></li>
+	  		<li><a href="del.html">信息删除</a></li>
+	  	</ul>
+	  </li>
+	  <li><a href="#">友情链接</a>
+	    <ul>
+	  		<li><a href="http://www.jd.com/">京东</a></li>
+	  		<li><a href="http://www.taobao.com/">淘宝</a></li>
+	  		<li><a href="http://www.1688.com/">阿里</a></li>
+	  	</ul>
+	  </li>
+  </ul>
+  </div>
+  <div class="informInfo">
+  <h3>信息发布</h3>
+  <hr>
+  <div class="left">
+  	  <ul>
+		  <li><a href="#">已发采购计划</a></li>
+		  <li><a href="#">已签采购合同</a></li>
+		  <li><a href="#">已签质量监控</a></li>
+		  <li><a href="#">已发退货单</a></li>
+		  <li><a href="#">已发配送单</a></li>
+	  </ul>
+  </div>
+  <div class="right" id="flow">
+	   <ul>
+        <li><a href="#">1.学会html5 绝对的屌丝逆袭（案例）</a><span>2013-09-18</span></li>
+        <li><a href="#">2.tab页面切换效果（案例）</a><span>2013-10-09</span></li>
+        <li><a href="#">3.圆角水晶按钮制作（案例）</a><span>2013-10-21</span></li>
+        <li><a href="#">4.HTML+CSS基础课程(系列)</a><span>2013-11-01</span></li>
+        <li><a href="#">5.分页页码制作（案例）</a><span>2013-11-06</span></li>
+        <li><a href="#">6.导航条菜单的制作（案例）</a><span>2013-11-08</span></li>
+        <li><a href="#">7.信息列表制作(案例)</a><span>2013-11-15</span></li>
+        <li><a href="#">8.下拉菜单制作(案例)</a><span>2013-11-22</span></li>
+        <li><a href="#">9.如何实现“新手引导”效果</a><span>2013-12-06</span></li>
+   	</ul>
+  </div>
+ </div>
+  <div class="returnInfo">
+  <h3>信息反馈</h3>
+  <hr>
+  <div class="left">
+  <ul>
+  <li><a href="#">退货反馈</a></li>
+  <li><a href="#">配送反馈</a></li>
+  <li><a href="#">绩效反馈</a></li>
+  </ul>
+  </div>
+  <div class="right">
+   <div class="one">
+   <h4>退货反馈</h4>
+       <ul>
+       <li><span>1、</span>天都公司退货反馈
+       <dl>
+       <dd>已收退货</dd>
+       <dd>同意退货</dd>
+       <dd>造成麻烦请谅解</dd>
+       </dl>
+       </li>
+       <li><span>2、</span>辉煌公司退货反馈
+       <dl>
+       <dd>未收退货</dd>
+       <dd>不同意退货</dd>
+       <dd>请查合同</dd>
+       </dl>
+       </li>
+       <li><span>3、</span>甜豆公司退货反馈
+       <dl>
+       <dd>未收退货</dd>
+       <dd>需要验货</dd>
+       <dd>造成麻烦请谅解</dd>
+       </dl>
+       </li>
+       </ul>
+   </div>
+   <div class="two">
+   <h4>配送反馈</h4>
+       <ul>
+       <li><span>1、</span>分店1配送反馈
+       <dl>
+       <dd>已收货物</dd>
+       <dd>全部完好</dd>
+       <dd>谢谢总部</dd>
+       </dl>
+       </li>
+       <li><span>2、</span>分店2配送反馈
+       <dl>
+       <dd>未收货物</dd>
+       <dd>询问情况</dd>
+       <dd>谢谢总部</dd>
+       </dl>
+       </li>
+       <li><span>3、</span>分店3配送反馈
+       <dl>
+       <dd>已收商品</dd>
+       <dd>部分损坏</dd>
+       <dd>谢谢总部</dd>
+       </dl>
+       </li>
+       </ul>
+   </div>
+   <div class="three">
+   <h4>绩效反馈</h4>
+       <ul>
+       <li><span>1、</span>分店1职工绩效反馈
+       <dl>
+       <dd>绩效错误</dd>
+       <dd>合同统计错误</dd>
+       <dd>请求更正</dd>
+       </dl>
+       </li>
+       <li><span>2、</span>分店2职工绩效反馈
+       <dl>
+       <dd>绩效错误</dd>
+       <dd>计划统计错误</dd>
+       <dd>请求更正</dd>
+       </dl>
+       </li>
+       <li><span>3、</span>分店3职工绩效反馈
+       <dl>
+       <dd>绩效错误</dd>
+       <dd>质检统计错误</dd>
+       <dd>请求更正</dd>
+       </dl>
+       </li>
+       </ul>
+   </div>
+  </div>
+  </div>
+  <div class="bolckmanage">
+  <h3>信息管理</h3>
+  <hr>
+  <div class="left">
+  <ul>
+  <li><a href="qry.html">信息查询</a></li>
+  <li><a href="del.html">信息删除</a></li>
+  </ul>
+  </div>
+  <div class="right">
+ 
+   </div>
+  </div>
+  <div class="friendlink">
+  <h3>友情链接</h3>
+  <hr>
+  <div class="left">
+  <ul>
+  <li><a href="http://www.jd.com/">京东</a></li>
+  <li><a href="http://www.taobao.com/">淘宝</a></li>
+  <li><a href="http://www.1688.com/">阿里</a></li>
+  </ul>
+  </div>
+ <div class="right">
+     <div id="container">
+    <div id="list" style="left: -600px;">
+        <img src="image/u=3248340543,4119408447&fm=21&gp=0.jpg" alt="1"/>
+        <img src="image/u=4240194852,2669833448&fm=21&gp=0.jpg" alt="1"/>
+        <img src="image/u=869750443,1681225410&fm=21&gp=0.jpg" alt="2"/>
+        <img src="image/u=3115181786,1067710589&fm=21&gp=0.jpg" alt="3"/>
+        <img src="image/u=986757092,1515208044&fm=21&gp=0.jpg" alt="4"/>
+        <img src="image/u=676344962,2019115830&fm=21&gp=0.jpg" alt="5"/>
+        <img src="image/u=3978557803,2873867100&fm=21&gp=0.jpg" alt="6"/>
+        <img src="image/u=3248340543,4119408447&fm=21&gp=0.jpg" alt="7"/>
+        <img src="image/u=4240194852,2669833448&fm=21&gp=0.jpg" alt="7"/>
+    </div>
+    <div id="buttons">
+        <span index="1" class="on"></span>
+        <span index="2"></span>
+        <span index="3"></span>
+        <span index="4"></span>
+        <span index="5"></span>
+        <span index="6"></span>
+        <span index="7"></span>
+    </div>
+    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+</div>
+  </div>
+  </div>
+  <div class="foot">
+  <hr>
+  <table>
+  <tr>
+  	  <td><img src="image/20150525.JPG"width="160"height="95"></a><td>
+	  <td>
+	   <ul>
+	  	<li><a href="phone.jsp">联系客服</a></li>
+	  	<li><a href="help.jsp">帮助</a></li>
+	  </ul>
+	  </td>
+  </tr>
+  </table>
+  </div>
+ <script type="text/javascript">
+ var area = document.getElementById('flow');
+ var iliHeight = 25;//单行滚动的高度
+ var speed = 50;//滚动的速度
+ var time;
+ var delay= 1000;
+ area.scrollTop=0;
+ area.innerHTML+=area.innerHTML;//克隆一份一样的内容
+ function startScroll(){
+	 time=setInterval("scrollUp()",speed);
+	 area.scrollTop++;
+	 }
+ function scrollUp(){
+	 if(area.scrollTop % iliHeight==0){
+		 clearInterval(time);
+		 setTimeout(startScroll,delay);
+		 }else{
+			 area.scrollTop++;
+			 if(area.scrollTop >= area.scrollHeight/2){
+				 area.scrollTop =0;
+				 }
+			 }
+	 }
+	 setTimeout(startScroll,delay)
+ </script>
+  </body>
+</html>

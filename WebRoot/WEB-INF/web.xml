@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="GBK"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servDTPostIns</servlet-name>
+    <servlet-class>serv.DT.servDTPostIns</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servDTPostDel</servlet-name>
+    <servlet-class>serv.DT.servDTPostDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servDTDateIns</servlet-name>
+    <servlet-class>serv.DT.servDTDateIns</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servAutoNo</servlet-name>
+    <servlet-class>serv.PRO.servAutoNo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servEmpSal</servlet-name>
+    <servlet-class>serv.PRO.servEmpSal</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servNoDesc</servlet-name>
+    <servlet-class>serv.OD.servNoDesc</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEEmployeeIns</servlet-name>
+    <servlet-class>serv.BE.servBEEmployeeIns</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEEmployeeQry</servlet-name>
+    <servlet-class>serv.BE.servBEEmployeeQry</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEEmployeeDel</servlet-name>
+    <servlet-class>serv.BE.servBEEmployeeDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servDTDateQry</servlet-name>
+    <servlet-class>serv.DT.servDTDateQry</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBECustomerIns</servlet-name>
+    <servlet-class>serv.BE.servBECustomerIns</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBECustomerDel</servlet-name>
+    <servlet-class>serv.BE.servBECustomerDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBECustomerQry</servlet-name>
+    <servlet-class>serv.BE.servBECustomerQry</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEProductIns</servlet-name>
+    <servlet-class>serv.BE.servBEProductIns</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEProductDel</servlet-name>
+    <servlet-class>serv.BE.servBEProductDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEProductQry</servlet-name>
+    <servlet-class>serv.BE.servBEProductQry</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEBranchIns</servlet-name>
+    <servlet-class>serv.BE.servBEBranchIns</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEBranchDel</servlet-name>
+    <servlet-class>serv.BE.servBEBranchDel</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>servBEBranchQry</servlet-name>
+    <servlet-class>serv.BE.servBEBranchQry</servlet-class>
+  </servlet>
+
+ <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ValidateServlet</servlet-name>
+    <servlet-class>serv.BE.ValidateServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+  
+   <servlet-mapping>
+    <servlet-name>ValidateServlet</servlet-name>
+    <url-pattern>/servlet/ValidateServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>servDTPostIns</servlet-name>
+    <url-pattern>/servlet/servDTPostIns</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servDTPostDel</servlet-name>
+    <url-pattern>/servlet/servDTPostDel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servDTDateIns</servlet-name>
+    <url-pattern>/servlet/servDTDateIns</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servAutoNo</servlet-name>
+    <url-pattern>/servlet/servAutoNo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servEmpSal</servlet-name>
+    <url-pattern>/servlet/servEmpSal</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servNoDesc</servlet-name>
+    <url-pattern>/servlet/servNoDesc</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEEmployeeIns</servlet-name>
+    <url-pattern>/servlet/servBEEmployeeIns</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>servBEEmployeeDel</servlet-name>
+    <url-pattern>/servlet/servBEEmployeeDel</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>servBEEmployeeQry</servlet-name>
+    <url-pattern>/servlet/servBEEmployeeQry</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servDTDateQry</servlet-name>
+    <url-pattern>/servlet/servDTDateQry</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBECustomerIns</servlet-name>
+    <url-pattern>/servlet/servBECustomerIns</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBECustomerDel</servlet-name>
+    <url-pattern>/servlet/servBECustomerDel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBECustomerQry</servlet-name>
+    <url-pattern>/servlet/servBECustomerQry</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEProductIns</servlet-name>
+    <url-pattern>/servlet/servBEProductIns</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEProductDel</servlet-name>
+    <url-pattern>/servlet/servBEProductDel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEProductQry</servlet-name>
+    <url-pattern>/servlet/servBEProductQry</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEBranchIns</servlet-name>
+    <url-pattern>/servlet/servBEBranchIns</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEBranchDel</servlet-name>
+    <url-pattern>/servlet/servBEBranchDel</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servBEBranchQry</servlet-name>
+    <url-pattern>/servlet/servBEBranchQry</url-pattern>
+  </servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,105 @@
+package serv.DT;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import vo.DT.voDTDate;
+import dao.DT.daoDTDate;
+
+public class servDTDateIns extends HttpServlet {
+
+	/**
+	 * Constructor of the object.
+	 */
+	public servDTDateIns() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
+
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("gb2312");
+		response.setCharacterEncoding("gb2312");
+		
+		String sx1 = request.getParameter("edtx1").trim();
+		String sx2 = request.getParameter("edtx2").trim();
+		
+		//将字符串转换为Timestamp
+		try {
+            Calendar cal = Calendar.getInstance();
+            Timestamp ts = new Timestamp(cal.getTimeInMillis());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            ParsePosition pos = new ParsePosition(0);
+            java.util.Date current = formatter.parse(sx2, pos);
+            ts = new java.sql.Timestamp(current.getTime()); 
+          //调用日期类
+    		voDTDate voDTDate1 = new voDTDate();
+    		daoDTDate dtDTDate = new daoDTDate();
+    		voDTDate1.setDateNo(sx1);
+    		voDTDate1.setDateDesc(ts);
+    		boolean flag = dtDTDate.insDTDate(voDTDate1);
+    		if (flag==false){
+    			out.print("<script>location.href='../dirDT/frmDTDateIns.jsp';" +
+    			"alert('insert fail！');</script>");
+    		}else{
+    			out.print("<script>location.href='../dirDT/frmDTDateIns.jsp';" +
+    			"alert('insert success！');</script>");
+    		}
+        }
+        catch (NullPointerException e) {
+            
+        }
+		
+		
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
+	}
+
+}
